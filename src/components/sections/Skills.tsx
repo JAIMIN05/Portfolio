@@ -110,7 +110,7 @@ const getSkillIcon = (skillName: string) => {
     
     // Backend Development
     'Node.js': '📦',
-    'Express.js': '🚂',
+    'Express.js': '⚡',
     'Socket.io': '🔌',
     'Langflow': '🔄',
     
