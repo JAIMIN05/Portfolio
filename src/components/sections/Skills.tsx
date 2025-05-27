@@ -2,6 +2,27 @@ import { useState, useEffect, useRef } from 'react';
 import { Card, CardContent } from '@/components/ui/card';
 import { skills } from '@/lib/data';
 import { cn } from '@/lib/utils';
+import {
+  Code2,
+  Coffee,
+  CircleDot,
+  Globe,
+  Paintbrush,
+  LayoutGrid,
+  Atom,
+  BoxSelect,
+  Wind,
+  Server,
+  Rocket,
+  Cable,
+  RefreshCw,
+  Database,
+  TableProperties,
+  GitBranch,
+  Github,
+  Code,
+} from 'lucide-react';
+
 
 const Skills = () => {
   const [isVisible, setIsVisible] = useState(false);
@@ -75,7 +96,7 @@ const Skills = () => {
                       key={skill.name}
                       className="flex flex-col items-center justify-center p-3 rounded-lg bg-muted/50 hover:bg-primary/10 transition-colors group"
                     >
-                      <div className="text-2xl mb-2 text-primary/70 group-hover:text-primary transition-colors">
+                      <div className="text-2xl mb-2 group-hover:text-primary transition-colors">
                         {getSkillIcon(skill.name)}
                       </div>
                       <span className="text-sm text-center font-medium">{skill.name}</span>
@@ -93,38 +114,39 @@ const Skills = () => {
 
 // Helper function to get skill icons
 const getSkillIcon = (skillName: string) => {
-  // Using emoji as fallback icons for technologies
-  const icons: Record<string, string> = {
+  const iconConfig: Record<string, { icon: any; color: string }> = {
     // Programming Languages
-    'JavaScript': '⚡',
-    'Java': '☕',
-    'C': '©️',
+    'JavaScript': { icon: Code2, color: 'text-yellow-400' },
+    'Java': { icon: Coffee, color: 'text-red-500' },
+    'C': { icon: Code, color: 'text-blue-500' },
     
     // Web Technologies
-    'HTML': '🌐',
-    'CSS': '🎨',
-    'Bootstrap': '🅱️',
-    'ReactJS': '⚛️',
-    'Material UI': '📱',
-    'Tailwind CSS': '🌊',
+    'HTML': { icon: Globe, color: 'text-orange-500' },
+    'CSS': { icon: Paintbrush, color: 'text-blue-400' },
+    'Bootstrap': { icon: LayoutGrid, color: 'text-purple-500' },
+    'ReactJS': { icon: Atom, color: 'text-cyan-400' },
+    'Material UI': { icon: BoxSelect, color: 'text-blue-400' },
+    'Tailwind CSS': { icon: Wind, color: 'text-cyan-500' },
     
     // Backend Development
-    'Node.js': '📦',
-    'Express.js': '⚡',
-    'Socket.io': '🔌',
-    'Langflow': '🔄',
+    'Node.js': { icon: Server, color: 'text-green-500' },
+    'Express.js': { icon: Rocket, color: 'text-gray-500' },
+    'Socket.io': { icon: Cable, color: 'text-yellow-500' },
+    'Langflow': { icon: RefreshCw, color: 'text-purple-400' },
     
     // Database Systems
-    'MongoDB': '🍃',
-    'SQL': '💾',
+    'MongoDB': { icon: Database, color: 'text-green-600' },
+    'SQL': { icon: TableProperties, color: 'text-orange-400' },
     
     // Developer Tools
-    'Git': '📝',
-    'GitHub': '🐙',
-    'VS Code': '💻',
+    'Git': { icon: GitBranch, color: 'text-orange-600' },
+    'GitHub': { icon: Github, color: 'text-gray-700 dark:text-gray-300' },
+    'VS Code': { icon: Code, color: 'text-blue-600' },
   };
 
-  return icons[skillName] || '🔧';
+  const config = iconConfig[skillName] || { icon: Code, color: 'text-primary' };
+  const IconComponent = config.icon;
+  return <IconComponent className={`w-6 h-6 ${config.color}`} />;
 };
 
 export default Skills;
